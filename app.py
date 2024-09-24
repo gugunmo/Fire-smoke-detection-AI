@@ -2,6 +2,7 @@ import streamlit as st
 import PIL 
 from PIL import Image
 import cv2
+import numpy
 
 def play_video(video_source):
     camera = cv2.VideoCapture(video_source)
