@@ -1,6 +1,6 @@
 import openvino as ov
 import gradio as gr
-#import cv2
+import cv2
 import numpy as np
 import time
 from ultralytics.utils.plotting import colors
