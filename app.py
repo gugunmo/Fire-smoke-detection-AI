@@ -1,8 +1,6 @@
 import streamlit as st
 import PIL 
 from PIL import Image
-import cv2
-import numpy
 import utils
 
 def play_video(video_source):
