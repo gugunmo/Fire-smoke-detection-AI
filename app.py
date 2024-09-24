@@ -1,6 +1,8 @@
 import streamlit as st
 import PIL
 from PIL import Image
+import opencv-python
+import cv2
 
 def play_video(video_source):
     camera = cv2.VideoCapture(video_source)
