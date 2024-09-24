@@ -11,7 +11,7 @@ import glob
 
 train_folder = 'train7'
 model_name= 'best.xml' 
-model_path = './runs/detect/' + train_folder + '/weights/best_openvino_model/' + model_name
+model_path = 'models/' + model_name
 
 core = ov.Core()
 
