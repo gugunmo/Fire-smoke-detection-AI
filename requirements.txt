@@ -6,3 +6,5 @@ tensorflow == 2.16.1
 streamlit
 Pillow
 numpy
+io
+cv2
