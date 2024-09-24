@@ -9,7 +9,6 @@ from ultralytics.utils.plotting import colors
 from IPython.display import clear_output
 import glob
 
-train_folder = 'train7'
 model_name= 'best.xml' 
 model_path = 'models/' + model_name
 
