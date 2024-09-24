@@ -23,7 +23,7 @@ st.set_page_config(
     initial_sidebar_state="expanded")
 
 st.title("Fire/smoke-detection Project :fire:")
-source_radio = st.sidebar.radio("Select Source",["IMAGE","VIDEO","WEBCAM"])
+source_radio = st.sidebar.radio("Select Source",["IMAGE","VIDEO"])
 
 st.sidebar.header("Confidence")
 conf_threshold = float(st.sidebar.slider("Select the Confidence Threshold", 10, 100, 20))/100
@@ -59,5 +59,3 @@ if source_radio == "VIDEO":
             pass
 
 
-if source_radio == "WEBCAM":
-    play_video(0)
