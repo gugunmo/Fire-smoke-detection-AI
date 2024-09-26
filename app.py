@@ -1,7 +1,12 @@
 import streamlit as st
-import PIL 
-from PIL import Image
+import utils
 import cv2
+import numpy as np
+import io
+import PIL
+from PIL import Image
+from camera_input_live import camera_input_live
+
 def play_video(video_source):
     camera = cv2.VideoCapture(video_source)
 
@@ -23,7 +28,7 @@ st.set_page_config(
     initial_sidebar_state="expanded")
 
 st.title("Fire/smoke-detection Project :fire:")
-source_radio = st.sidebar.radio("Select Source",["IMAGE","VIDEO"])
+source_radio = st.sidebar.radio("Select Source",["IMAGE","VIDEO","WEBCAM"])
 
 st.sidebar.header("Confidence")
 conf_threshold = float(st.sidebar.slider("Select the Confidence Threshold", 10, 100, 20))/100
@@ -35,7 +40,7 @@ if source_radio == "IMAGE":
     
     if input is not None:
         uploaded_image = PIL.Image.open(input)
-        uploaded_image_cv = cv2.cvtColor(numpy.array(uploaded_image), cv2.COLOR_RGB2BGR)
+        uploaded_image_cv =cv2.cvtColor(np.array(uploaded_image), cv2.COLOR_RGB2BGR)
         visualized_image = utils.predict_image(uploaded_image_cv, conf_threshold = conf_threshold)
         st.image(visualized_image, channels = "BGR")
 
@@ -59,3 +64,10 @@ if source_radio == "VIDEO":
             pass
 
 
+if source_radio == "WEBCAM":
+    input = camera_input_live()
+    uploaded_image = Image.open(input)
+    uploaded_image_cv = cv2.cvtColor(np.array(uploaded_image), cv2.COLOR_RGB2BGR)
+    boxes, resized_image = utils.predict_image(uploaded_image_cv, conf_threshold)
+    visualized_image = utils.convert_result_to_image(uploaded_image_cv, resized_image, boxes, conf_labels=False)
+    st.image(visualized_image, channels = "RGB")
